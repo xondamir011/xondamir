@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 const Product = ({search = ""}) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
- 
+  const { addToCart } = useContext(CartContext);
+
   useEffect(() => {
     const GetProduct = async () => {
       try {
@@ -25,7 +28,7 @@ const Product = ({search = ""}) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+        <span className="loading loading-spinner loading-xl"></span>
       </div>
     );
   }
@@ -49,7 +52,7 @@ const Product = ({search = ""}) => {
 
               <div className="flex justify-between items-center mt-2">
                 <span className="text-xl font-bold text-green-600">${item.price}</span>
-                <button className="btn btn-primary">Buy Now</button>
+                <button className="btn btn-primary" onClick={() => addToCart(item)}>Buy Now</button>
               </div>
             </div>
 
