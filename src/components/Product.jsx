@@ -6,6 +6,7 @@ const Product = ({search = ""}) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useContext(CartContext);
+  
 
   useEffect(() => {
     const GetProduct = async () => {
@@ -26,6 +27,7 @@ const Product = ({search = ""}) => {
     const filtered = products.filter((item) => item.title.toLowerCase().includes(search.toLowerCase() ));
 
   if (loading) {
+    
     return (
       <div className="flex justify-center items-center h-screen">
         <span className="loading loading-spinner loading-xl"></span>
